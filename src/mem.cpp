@@ -1,4 +1,4 @@
-#include "../include/mem/mem.h"
+#include "../include/mem.hpp"
 uint8_t memory_t::read(uint32_t address){
     if (address < ROM_START){
         return ram[address];

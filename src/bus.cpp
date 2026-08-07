@@ -1,4 +1,4 @@
-#include "../include/bus/bus.h"
+#include "../include/bus.hpp"
 #include <cassert>
 void bus_t::write(uint16_t address, uint8_t value){
     if (address < 0x4000){
@@ -32,6 +32,6 @@ uint8_t bus_t::read(uint16_t address){
     }
     else{
         // ROM
-        return mem->read(RAM_SIZE + (address - ROM_SIZE));
+        return mem->read((ROM_START) + (address - ROM_SIZE));
     }
 }

@@ -1,5 +1,5 @@
 #include <cstdint>
-#include "../bus/bus.h"
+#include "bus.hpp"
 #pragma once
 enum cpu_state
 {

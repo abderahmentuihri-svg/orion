@@ -1,5 +1,5 @@
-#include "../include/cpu/cpu.h"
-#include "../include/bus/bus.h"
+#include "../include/cpu.hpp"
+#include "../include/bus.hpp"
 //these are all just helper functions, NOT THE ACTUAL OPCODES THIS PROJECT USES
 //power-on/reset sequence
 //-------------------------------------------------------------------------------------------------

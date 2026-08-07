@@ -1,6 +1,6 @@
-#include "../include/cpu/cpu.h"
-#include "../include/bus/bus.h"
-#include "../include/mem/mem.h"
+#include "../include/cpu.hpp"
+#include "../include/bus.hpp"
+#include "../include/mem.hpp"
 int main(){
 
 	return 0;
