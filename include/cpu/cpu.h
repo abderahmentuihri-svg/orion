@@ -1,4 +1,5 @@
 #include <cstdint>
+#include "../bus/bus.h"
 #pragma once
 enum cpu_state
 {
@@ -9,15 +10,17 @@ enum cpu_state
 };
 //main cpu struct
 //--------------------------------------
-struct cpu_t{			      //|
-uint8_t a,x,y,p,sp,temp1,temp2,	      //|
-	opcode,data_bus;	      //|
-cpu_state state;		      //|
-	uint16_t pc,addr_bus;         //|
-	bool reset;		      //|
-	uint8_t cycles;		      //|
-	void reset_cpu();	      //|
-};				      //|  
+struct cpu_t{			             //|
+	bus_t*bus;		                 //|
+uint8_t a,x,y,p,sp,temp1,temp2,	     //|
+	opcode,data_bus;	             //|
+cpu_state state;		             //|
+	uint16_t pc,addr_bus;            //|
+	bool reset;		                 //|
+	uint8_t cycles;		             //|
+	void reset_cpu();	             //|
+	void clock();		             //|
+};				                     //|  
 //--------------------------------------
 //load helper functions
 //------------------------------------------
