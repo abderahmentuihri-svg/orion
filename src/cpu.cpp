@@ -3,29 +3,28 @@
 //these are all just helper functions, NOT THE ACTUAL OPCODES THIS PROJECT USES
 //power-on/reset sequence
 //-------------------------------------------------------------------------------------------------
-void cpu_t::reset_cpu(){                                                                        //|
-	cycles=1;                                                                                   //|
-	switch (cycles){                                                                            //|
-		case 1: cycles++;                                                                       //|
-		case 2: addr_bus++;cycles++;                                                            //|
-		case 3: addr_bus=sp+0x100;cycles++;                                                     //|
-		case 4: addr_bus=(sp-1)+0x100;cycles++;                                                 //|
-		case 5: addr_bus=(sp-2)+0x100;cycles++;                                                 //|
-		case 6: addr_bus=0xfffc;pc|=bus->read(addr_bus);cycles++;                      //|
-		case 7: addr_bus=0xfffd;pc|=(bus->read(addr_bus))<<8;cycles=1;                 //|
-	}                                                                                           //|
+void cpu_t::reset_cpu(){									//|
+	cycles=0;
+	switch (cycles){                                                                        //|
+		case 1: ;                                                                       //|
+		case 2: addr_bus++;	                                                        //|
+		case 3: addr_bus=sp+0x100;	                                                //|
+		case 4: addr_bus=(sp-1)+0x100;	                                                //|
+		case 5: addr_bus=(sp-2)+0x100;	                                                //|
+		case 6: addr_bus=0xfffc;pc|=bus->read(addr_bus);	                        //|
+		case 7: addr_bus=0xfffd;pc|=(bus->read(addr_bus))<<8;	                        //|
+	}                                                                                       //|
                                                                                                 //|
 }                                                                                               //|
 //-------------------------------------------------------------------------------------------------
-
 //load helper functions
 //------------------------------------------
 void load_a(cpu_t*cpu,uint8_t value){	 //|
-	cpu->a=value;			             //|
-}					                     //|
-void load_a_addr(cpu_t*cpu){		     //|
-	cpu->a=cpu->data_bus;		         //|
-}					                     //|
+	cpu->a=value;			 //|
+}		                         //|
+void load_a_addr(cpu_t*cpu){   	         //|
+	cpu->a=cpu->data_bus;		 //|
+}					 //|
 void load_x(cpu_t*cpu,uint8_t value){    //|
         cpu->x=value;                    //|
 }                                        //|

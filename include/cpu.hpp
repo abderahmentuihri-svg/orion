@@ -1,26 +1,21 @@
 #include <cstdint>
 #include "bus.hpp"
 #pragma once
-enum cpu_state
-{
-    FETCH,
-    EXECUTE,
-    RESET,
-    INTERRUPT
-};
 //main cpu struct
 //--------------------------------------
-struct cpu_t{			             //|
-	bus_t*bus;		                 //|
+struct cpu_t{		             //|
+	bus_t*bus=new bus_t;         //|
 uint8_t a,x,y,p,sp,temp1,temp2,	     //|
-	opcode,data_bus;	             //|
-cpu_state state;		             //|
-	uint16_t pc,addr_bus;            //|
-	bool reset;		                 //|
-	uint8_t cycles;		             //|
-	void reset_cpu();	             //|
-	void clock();		             //|
-};				                     //|  
+	opcode,data_bus;	     //|
+	uint16_t pc,addr_bus;        //|
+	bool reset;		     //|
+	bool irq;		     //|
+	bool nmi;		     //|
+	bool prev_nmi;		     //|
+	uint8_t cycles;	             //|
+	void reset_cpu();	     //|
+	void clock();	             //|
+};			             //|  
 //--------------------------------------
 //load helper functions
 //------------------------------------------
