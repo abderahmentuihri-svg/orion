@@ -12,8 +12,11 @@ uint8_t a,x,y,p,sp,temp1,temp2,	     //|
 	bool irq;		     //|
 	bool nmi;		     //|
 	bool prev_nmi;		     //|
+	bool instr_complete;	     //|
 	uint8_t cycles;	             //|
 	void reset_cpu();	     //|
+	void handle_nmi();	     //|
+	void handle_irq();	     //|
 	void clock();	             //|
 };			             //|  
 //--------------------------------------

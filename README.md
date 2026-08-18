@@ -13,9 +13,9 @@ And besides, i wasn't even gonna try to learn x86-64 assembly (i just don't like
 
 | Address range | Description |
 |---|---|
-| `0x0000 - 0x3FFF` | Fixed RAM (16KB) |
-| `0x4000 - 0x7FFF` | Banked RAM (16KB per bank) |
-| `0x8000 - 0xFFFF` | ROM |
+| `0x0000 - 0x7FFF` | Fixed RAM (32KB) |
+| `0x8000 - 0xEFFF` | Banked RAM (28KB per bank) |
+| `0xF000 - 0xFFFF` | ROM (4KB)|
 
-The bank register is in fixed RAM at the last address, being 0x3FFF.
-it's a 1 byte large register, meaning 256 banks of RAM, giving a total of 4MB of banked RAM.
+The bank register is in fixed RAM at the last address, being 0x7FFF.
+it's a 1 byte large register, meaning 256 banks of RAM, giving a total of 7MB of banked RAM.

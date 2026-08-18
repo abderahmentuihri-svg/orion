@@ -1,37 +1,45 @@
 #include "../include/bus.hpp"
 #include <cassert>
-void bus_t::write(uint16_t address, uint8_t value){
-    if (address < 0x4000){
-        // fixed RAM
+
+void bus_t::write(uint16_t address, uint8_t value) {
+    if (address < 0x8000) {
+        // Fixed RAM
         mem->write(address, value);
     }
-    else if (address < ROM_SIZE){
-        // banked RAM
-        uint8_t bank = mem->read(0x3FFF);
-        uint32_t offset = address - 0x4000;
+    else if (address < 0xF000) {
+        // Banked RAM
+        uint8_t bank = mem->read(0x7FFF);
+        uint32_t offset = address - 0x8000;
 
-        mem->write(bank * 16384 + offset, value);
+        mem->write(
+            FRAM_SIZE + bank * BANK_SIZE + offset,
+            value
+        );
     }
-    else{
+    else {
         // ROM
         assert(false && "error: write to ROM");
     }
 }
 
-uint8_t bus_t::read(uint16_t address){
-    if (address < 0x4000){
-        // fixed RAM
+uint8_t bus_t::read(uint16_t address) {
+    if (address < 0x8000) {
+        // Fixed RAM
         return mem->read(address);
     }
-    else if (address < ROM_SIZE){
-        // banked RAM
-        uint8_t bank = mem->read(0x3FFF);
-        uint32_t offset = address - 0x4000;
+    else if (address < 0xF000) {
+        // Banked RAM
+        uint8_t bank = mem->read(0x7FFF);
+        uint32_t offset = address - 0x8000;
 
-        return mem->read(bank * 16384 + offset);
+        return mem->read(
+            FRAM_SIZE + bank * BANK_SIZE + offset
+        );
     }
-    else{
+    else {
         // ROM
-        return mem->read((ROM_START) + (address - ROM_SIZE));
+        return mem->read(
+            ROM_START + (address - 0xF000)
+        );
     }
 }
