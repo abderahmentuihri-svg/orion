@@ -5,25 +5,26 @@
 
 // main cpu struct
 struct cpu_t {
-    bus_t* bus = new bus_t;
+	bus_t* bus = new bus_t;
+	
+	uint8_t a, x, y, p, sp,
+		opcode, data_bus;
 
-    uint8_t a, x, y, p, sp,
-            opcode, data_bus;
+	uint16_t pc, addr_bus;
 
-    uint16_t pc, addr_bus;
+	bool reset;
+	bool irq;
+	bool nmi;
+	bool prev_nmi;
+	bool instr_complete;
 
-    bool reset;
-    bool irq;
-    bool nmi;
-    bool prev_nmi;
-    bool instr_complete;
-
-    uint8_t cycles;
-
-    void reset_cpu();
-    void handle_nmi();
-    void handle_irq();
-    void clock();
+	uint8_t cycles;
+	uint8_t instr_size;
+	
+	void reset_cpu();
+	void handle_nmi();
+	void handle_irq();
+	void clock();
 };
 
 // load helper functions
@@ -45,19 +46,19 @@ void store_x(cpu_t* cpu);
 void store_y(cpu_t* cpu);
 
 // flag setting helper functions
-void set_c(cpu_t* cpu);
-void set_z(cpu_t* cpu);
-void set_i(cpu_t* cpu);
-void set_d(cpu_t* cpu);
-void set_b(cpu_t* cpu);
-void set_v(cpu_t* cpu);
-void set_n(cpu_t* cpu);
+void set_c();
+void set_z();
+void set_i();
+void set_d();
+void set_b();
+void set_v();
+void set_n();
 
 // flag clearing helper functions
-void clear_c(cpu_t* cpu);
-void clear_z(cpu_t* cpu);
-void clear_i(cpu_t* cpu);
-void clear_d(cpu_t* cpu);
-void clear_b(cpu_t* cpu);
-void clear_v(cpu_t* cpu);
-void clear_n(cpu_t* cpu);
+void clear_c();
+void clear_z();
+void clear_i();
+void clear_d();
+void clear_b();
+void clear_v();
+void clear_n();
